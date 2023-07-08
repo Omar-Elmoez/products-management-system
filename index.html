@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CRUD</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="crud-container">
+      <header class="header">
+        <h1>cruds</h1>
+        <p>product management system</p>
+      </header>
+      <main class="main">
+        <input type="text" name="title" id="title" placeholder="Title" />
+        <div class="price-options">
+          <input
+            type="number"
+            name="price"
+            id="price"
+            placeholder="Price"
+            min="0"
+          />
+          <input
+            type="number"
+            name="taxes"
+            id="taxes"
+            placeholder="Taxes"
+            min="0"
+          />
+          <input type="number" name="ads" id="ads" placeholder="Ads" min="0" />
+          <input
+            type="number"
+            name="discount"
+            id="discount"
+            placeholder="Discount"
+            min="0"
+          />
+          <span class="price-total" id="total"></span>
+        </div>
+        <input
+          type="number"
+          name="count"
+          id="count"
+          placeholder="Count"
+          min="1"
+        />
+        <input
+          type="text"
+          name="category"
+          id="category"
+          placeholder="Category"
+        />
+        <div class="createAndUpdate_box">
+          <button class="btn" id="updateProduct-btn">Update</button>
+          <button class="btn" id="create-btn">Create</button>
+        </div>
+        <div class="search-options">
+          <input type="text" name="search" id="search" placeholder="Search" />
+          <div class="search-btns">
+            <button class="btn" id="searchByTitle">Search By Title</button>
+            <button class="btn" id="searchByCategory">
+              Search By Category
+            </button>
+          </div>
+        </div>
+      </main>
+      <div class="deleteAll-box" id="deleteAll-box"></div>
+      <table class="table" id="table">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Price</th>
+            <th>Taxes</th>
+            <th>Ads</th>
+            <th>Discount</th>
+            <th>Total</th>
+            <th>Category</th>
+            <th>Update</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>

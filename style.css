@@ -1,0 +1,121 @@
+/* ================================ Global Rlues ================================ */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body {
+    background-color: #222;
+}
+input,
+.btn {
+    border: none;
+    outline: none;
+}
+input {
+    width: 100%;
+    height: 35px;
+    text-indent: 10px;
+    font-size: 1rem;
+    background-color: #111;
+    color: white;
+    letter-spacing: 2px;
+    margin-block: 10px;
+    border-radius: 6px;
+    transition: .5s;
+}
+input:focus {
+    transform: scale(1.1);
+    background-color: #000;
+}
+.btn {
+    background-color: #470053;
+    color: white;
+    font-size: 1rem;
+    letter-spacing: .5px;
+    width: 100%;
+    padding-block: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: .3s;
+}
+.btn:hover {
+    background-color: #51025f;
+    letter-spacing: 2px;
+}
+
+/* ================================ Custom Style ================================ */
+.crud-container {
+    width: 80%;
+    margin: auto;
+    padding-top: 50px;
+    color: white;
+    font-family: system-ui, sans-serif;
+}
+.header {
+    text-transform: uppercase;
+    text-align: center;
+    margin: 10px 0;
+}
+.main {
+    margin-top: 30px;
+}
+.price-options {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.price-options input {
+    width: calc(100% / 4);
+}
+.price-total {
+    flex-grow: 1;
+    text-align: center;
+    background-color: #a00d02;
+    border-radius: 6px;
+    padding: 5px;
+}
+.price-total::before {
+    content: 'Total: ';
+    letter-spacing: 2px;
+}
+.search-options {
+    margin-top: 50px;
+}
+.search-btns {
+    display: flex;
+    justify-content: space-around;
+}
+.search-btns .btn {
+    width: 45%;
+}
+.deleteAll-box{
+    margin-top: 20px;
+}
+.table {
+    margin-top: 30px;
+    width: 100%;
+    text-align: center;
+}
+.table th {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+th,
+td {
+    padding: 5px;
+}
+
+.createAndUpdate_box {
+    position: relative;
+}
+.createAndUpdate_box button {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+}
+.createAndUpdate_box button.hidebtn {
+    display: none;
+}
