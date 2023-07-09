@@ -31,7 +31,7 @@ function calcTotal(p, t, a, d) {
 }
 // Add New Product
 let create_btn = document.querySelector("#create-btn");
-let updateProduct_btn = document.querySelector("#updateProduct_btn");
+let modify_btn = document.querySelector("#modify-btn");
 let update_btn = document.querySelector("#update-btn");
 let delete_btn = document.querySelector("#delete-btn");
 let tbody = document.querySelector("#tbody");
@@ -54,7 +54,7 @@ function ShowData() {
           <td>${allProducts[i].discount}</td>
           <td>${allProducts[i].total}</td>
           <td>${allProducts[i].category}</td>
-          <td><button class='btn' id='update-btn' onclick ='updateProduct(${JSON.stringify(allProducts[i])})'>Update</button></td>
+          <td><button class='btn' id='update-btn' onclick ='updateProduct(${i})'>Update</button></td>
           <td><button class='btn' id='delete-btn' onclick='deleteProduct(${i})'>Delete</button></td>
         </tr>
     `;
@@ -117,31 +117,54 @@ function deleteAllProducts() {
   ShowData();
 }
 
-function updateProduct(product) {
+function updateProduct(i) {
+  let product = allProducts[i];
+  // Show Information Of Product
   titleField.value = product.title;
   priceField.value = product.price;
   taxesField.value = product.taxes;
   adsField.value = product.ads;
   discountField.value = product.discount;
-  totalField.innerHTML = product.total;
-  countField.value = product.count || 1;
+  calcTotal(priceField.value, taxesField.value, adsField.value, discountField.value);
+  // There is no need for count field => user just modify the exsiting product
+  // countField.value = product.count || 1; => X
+  countField.style.display = 'none'
   categoryField.value = product.category;
-  create_btn.classList.toggle('hidebtn')
+  // ==================================
 
-  updateProduct_btn.addEventListener('click', () => {
-    product.title = titleField.value;
-    // priceField.value = product.price;
-    // taxesField.value = product.taxes;
-    // adsField.value = product.ads;
-    // discountField.value = product.discount;
-    // totalField.innerHTML = product.total;
-    // countField.value = product.count || 1;
-    // categoryField.value = product.category;
-  })  
+  // Hide Create Button
+  create_btn.classList.add("hide");
 
+  // Pass The Index Of The Product => to target it in the array
+  modify_btn.dataset.productIndex = i;
+
+  scroll({
+    top: 0,
+    behavior: "smooth",
+  })
 }
 
-create_btn.addEventListener("click", () => {
+modify_btn.addEventListener("click", () => {
+  create_btn.classList.remove("hide");
+  countField.style.display = 'block';
+  let positionInArr = modify_btn.dataset.productIndex;
+  const productInfo = {
+    title: titleField.value,
+    price: priceField.value,
+    taxes: taxesField.value,
+    ads: adsField.value,
+    discount: discountField.value,
+    total: totalField.innerText,
+    count: +countField.value,
+    category: categoryField.value,
+  };
+  allProducts.splice(positionInArr, 1, productInfo);
+  localStorage.setItem("products", JSON.stringify(allProducts));
+  ShowData();
+  Reset(); 
+});
+
+create_btn.addEventListener("click", (e) => {
   // ================= Product Info =================
   const productInfo = {
     title: titleField.value,
@@ -154,7 +177,7 @@ create_btn.addEventListener("click", () => {
     category: categoryField.value,
   };
   // Create Specific Number of Products
-  if(productInfo.count) {
+  if (productInfo.count) {
     for (let i = 0; i < productInfo.count; i++) {
       allProducts.push(productInfo);
     }

@@ -106,16 +106,14 @@ th,
 td {
     padding: 5px;
 }
-
-.createAndUpdate_box {
+.createAndUpdate {
     position: relative;
 }
-.createAndUpdate_box button {
+.createAndUpdate button {
     position: absolute;
-    width: 100%;
-    left: 0;
     top: 0;
+    left: 0;
 }
-.createAndUpdate_box button.hidebtn {
+.createAndUpdate .hide {
     display: none;
 }
