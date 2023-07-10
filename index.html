@@ -53,14 +53,16 @@
           placeholder="Category"
         />
         <div class="createAndUpdate">
-          <button class="btn" id="modify-btn" data-productIndex="">Update</button>
+          <button class="btn" id="modify-btn" data-productIndex="">
+            Update
+          </button>
           <button class="btn" id="create-btn">Create</button>
         </div>
         <div class="search-options">
           <input type="text" name="search" id="search" placeholder="Search" />
           <div class="search-btns">
-            <button class="btn" id="searchByTitle">Search By Title</button>
-            <button class="btn" id="searchByCategory">
+            <button class="btn" id="searchByTitle" onclick="setSearchMood(this.id)">Search By Title</button>
+            <button class="btn" id="searchByCategory" onclick="setSearchMood(this.id)">
               Search By Category
             </button>
           </div>

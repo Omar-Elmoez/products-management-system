@@ -83,6 +83,10 @@ input:focus {
 .search-options {
     margin-top: 50px;
 }
+input[placeholder='Search'] {
+    height: 0;
+    transition: .4s;
+}
 .search-btns {
     display: flex;
     justify-content: space-around;
