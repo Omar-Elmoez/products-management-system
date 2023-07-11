@@ -111,13 +111,30 @@ function deleteProduct(i) {
 }
 
 function deleteAllProducts() {
-  allProducts.length = 0;
-  localStorage.products = JSON.stringify(allProducts);
-  // ====================================
-  // localStorage.clear(); => I prefer this
-  // allProducts.splice(0);
-  // ====================================
-  ShowData();
+  Swal.fire({
+    title: 'Are you sure?',
+    text: "You won't be able to revert this!",
+    icon: 'question',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, delete them!'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      allProducts.length = 0;
+      localStorage.products = JSON.stringify(allProducts);
+      // ====================================
+      // localStorage.clear(); => I prefer this
+      // allProducts.splice(0);
+      // ====================================
+      ShowData();
+      Swal.fire(
+        'Deleted!',
+        'Your Products have been deleted.',
+        'success'
+      )
+    }
+  })
 }
 
 // There is another way to activate the Update function:
@@ -197,12 +214,21 @@ create_btn.addEventListener("click", (e) => {
     category: categoryField.value,
   };
   // Create Specific Number of Products
-  if (productInfo.count) {
-    for (let i = 0; i < productInfo.count; i++) {
+  if(productInfo.title && productInfo.price && productInfo.category) {
+
+    if (productInfo.count) {
+      for (let i = 0; i < productInfo.count; i++) {
+        allProducts.push(productInfo);
+      }
+    } else {
       allProducts.push(productInfo);
     }
   } else {
-    allProducts.push(productInfo);
+    Swal.fire({
+      title: 'Not Enough Info',
+      html: 'Required <b>Title, Price and Category</b>',
+      icon: 'info',
+  })
   }
 
   // ================= Saving Products  =================
